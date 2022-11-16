@@ -1,5 +1,6 @@
+import 'package:counter_7/add_budget.dart';
 import 'package:flutter/material.dart';
-
+import 'package:counter_7/drawer.dart';
 void main() {
   runApp(const MyApp());
 }
@@ -24,13 +25,13 @@ class MyApp extends StatelessWidget {
         // is not restarted.
         primarySwatch: Colors.blue,
       ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
+      home: const MyHomePage(),
     );
   }
 }
 
 class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key, required this.title});
+  const MyHomePage({super.key});
 
   // This widget is the home page of your application. It is stateful, meaning
   // that it has a State object (defined below) that contains fields that affect
@@ -41,7 +42,7 @@ class MyHomePage extends StatefulWidget {
   // used by the build method of the State. Fields in a Widget subclass are
   // always marked "final".
 
-  final String title;
+  final String title = 'Counter Program';
 
   @override
   State<MyHomePage> createState() => _MyHomePageState();
@@ -50,15 +51,14 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   int _counter = 0;
   String condition = 'EVEN';
-  Color textcolor = Colors.black;
   void _oddeven(){
     setState((){
     if(_counter%2 == 0){
       condition = 'EVEN';
-      textcolor = Colors.red;
+      style: TextStyle(color: Colors.red);
     }else{
       condition = 'ODD';
-      textcolor = Colors.blue;
+      style: TextStyle(color: Colors.blue);
     }
     }
     );
@@ -85,6 +85,7 @@ class _MyHomePageState extends State<MyHomePage> {
     });
   }
 
+
   @override
   Widget build(BuildContext context) {
     // This method is rerun every time setState is called, for instance as done
@@ -99,6 +100,7 @@ class _MyHomePageState extends State<MyHomePage> {
         // the App.build method, and use it to set our appbar title.
         title: Text(widget.title),
       ),
+      drawer: DrawerClass('counter_7'),
       body: Center(
         // Center is a layout widget. It takes a single child and positions it
         // in the middle of the parent.
@@ -119,9 +121,10 @@ class _MyHomePageState extends State<MyHomePage> {
           // horizontal).
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            Text(
-              '$condition',
-            ),
+             if(_counter%2 == 0)...[
+                Text("EVEN",style:TextStyle(color:Colors.red),),]        
+             else...[
+                 Text("ODD",style:TextStyle(color:Colors.blue),),],
             Text(
               '$_counter',
               style: Theme.of(context).textTheme.headline4,
