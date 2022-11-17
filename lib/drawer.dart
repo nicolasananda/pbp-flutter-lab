@@ -1,9 +1,9 @@
 import 'dart:html';
-
-import 'package:counter_7/add_budget.dart';
+import 'package:counter_7/showdata.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'main.dart';
+import 'package:counter_7/Form.dart';
 
 class DrawerClass extends StatelessWidget{
   DrawerClass(this.currentPage);
@@ -15,14 +15,11 @@ class DrawerClass extends StatelessWidget{
     return Drawer(
       child: Column(
           children: [
-            SizedBox(height: 30.0,),
+      
             // Adding clickable menu
             ListTile(
-              title: const Text('counter_7'),
+              title: const Text('Counter Program'),
               onTap: () {
-                Navigator.of(context).pop();
-                if(this.currentPage == 'counter_7') return;
-
                 Navigator.pushReplacement(
                   context,
                   MaterialPageRoute(builder: (context) => const MyHomePage()),
@@ -32,10 +29,7 @@ class DrawerClass extends StatelessWidget{
             ListTile(
               title: const Text('Add Budget'),
               onTap: () {
-                // Routing the menu to the form page
-                Navigator.of(context).pop();
-                if(this.currentPage == 'Add Budget Info') return;
-
+                // Routing the menu to the form page                
                 Navigator.pushReplacement(
                   context,
                   MaterialPageRoute(builder: (context) =>  AddBudgetPage()),
@@ -43,12 +37,9 @@ class DrawerClass extends StatelessWidget{
               },
             ),
             ListTile(
-              title: const Text('Budget Data'),
+              title: const Text('Show Budget'),
               onTap: () {
-                // Routing the menu to the form page
-                Navigator.of(context).pop();
-                if(this.currentPage == 'Budget Data') return;
-
+                // Routing the menu to the form page                
                 Navigator.pushReplacement(
                   context,
                   MaterialPageRoute(builder: (context) =>  BudgetDataPage(list: AddBudgetPage.listData)),

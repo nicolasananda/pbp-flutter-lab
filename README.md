@@ -47,3 +47,42 @@ c. Create a variable for storing ODD/EVEN and the color
 d. Create a function if odd or even the color will be changed
 
 e. Create the button and implement the bonus
+
+## Assignment 8
+### Explain the difference between Navigator.push and Navigator.pushReplacement.
+
+Navigator.push() is a push method that is used to add another route to the top of the current screen stack (stack), so that the new page is displayed above the previous page.
+Navigator.pushReplacement Is a push method that adds a new route to the navigation stack and will delete the current route by removing the previous route once added.
+
+### List all the widgets you used in this project and explain their functions.
+
+Scaffold : Base structure and styling in apllication
+Row : Display Children on Horizontal format
+Text : Display string
+Appbar : Display toolbar widgets
+Padding : For spacing
+SizedBox : A box with a designated size
+Form : For forms
+Icon : For icons
+Column : Displays children on Vertical format
+Drawer : For creating a drawer
+
+### Name the types of events that exist in Flutter (example: onPressed).
+
+onPressed, onChanged, AnimationEvent, ClipboardEvent, ErrorEvent
+
+### Explain how the Navigator works in "switching" pages of a Flutter application.
+
+Navigator works to manage elements with routes that display content pages in flutter.
+
+The navigator itself consists of 3 parts, namely the stack, the pop method which will remove the topmost section and the navigation will display the previous page, and the push method which will navigate to a new page.
+
+### Explain how you implemented the checking list above.
+
+1. Open CMD
+2. Change path to pbp-flutter-lab
+3. Create a new file in lib called Form.dart for adding budget information
+4. Create a new file in lib called drawer.dart for creating a drawer
+5. Create a new file in lib called showdata.dart for showing the budget data
+6. Code the files
+7. Add, Commit, Push

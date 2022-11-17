@@ -4,9 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:date_field/date_field.dart';
 import 'package:intl/intl.dart';
 import 'package:counter_7/drawer.dart';
-
-// import 'package:syncfusion_flutter_datepicker/datepicker.dart';
-
+import 'package:counter_7/showdata.dart';
 import 'main.dart';
 
 class AddBudgetPage extends StatefulWidget {
@@ -20,7 +18,7 @@ class AddBudgetPage extends StatefulWidget {
 class _AddBudgetPageState extends State<AddBudgetPage> {
   static final List<List<Object>> list = [];
   final _formKey = GlobalKey<FormState>();
-  String jenis = 'Income';
+  String type = 'Income';
   String title = '';
   int amount = 0;
   DateTime datetime = DateTime.now();
@@ -30,7 +28,7 @@ class _AddBudgetPageState extends State<AddBudgetPage> {
   TextEditingController dateInputController = TextEditingController();
 
 
-  List<String> listJenis = ['Income', 'Expenses'];
+  List<String> listType = ['Income', 'Expenses'];
   List<Object> listForm = [];
 
   List<List<Object>> _getList(){
@@ -44,10 +42,9 @@ class _AddBudgetPageState extends State<AddBudgetPage> {
     return Scaffold(
       appBar: AppBar(
         iconTheme: IconThemeData(color: Colors.black),
-        backgroundColor: Colors.white,
+        backgroundColor: Colors.blue,
         title: Text('Form', style: TextStyle(
-          fontWeight: FontWeight.w600,
-          fontSize: 22, color: Colors.black54,
+          fontSize: 20, color: Colors.white,
         ),),
       ),
       // Adding drawer menu
@@ -63,9 +60,8 @@ class _AddBudgetPageState extends State<AddBudgetPage> {
                 padding: const EdgeInsets.all(8.0),
                 child: TextFormField(
                   decoration: InputDecoration(
-                    focusedBorder: OutlineInputBorder(
-                      borderSide: const BorderSide(color: Color.fromRGBO(128,212,196,1),),
-
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(5),
                     ),
                     hintText: "Title",
                   ),
@@ -98,10 +94,9 @@ class _AddBudgetPageState extends State<AddBudgetPage> {
                   padding: const EdgeInsets.all(8.0),
                   child: TextFormField(
                     decoration: InputDecoration(
-                      focusedBorder: OutlineInputBorder(
-                        borderSide: const BorderSide(color: Color.fromRGBO(128,212,196,1),),
-
-                      ),
+                      border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(5),
+                    ),
                       hintText: "Amount",
                     ),
                     onChanged: (String? value) {
@@ -131,29 +126,21 @@ class _AddBudgetPageState extends State<AddBudgetPage> {
                   height: 1,
                 ),
                 DropdownButton<String>(
-                    value: jenis,
+                    value: type,
                     icon: const Icon(Icons.keyboard_arrow_down),
-                    elevation: 16,
-                    hint: Text(
-                      "Choose Type",
-                      style: TextStyle(
-                      color: Colors.black,
-                      fontSize: 14,
-                      fontWeight: FontWeight.w500),
-                    ),
+                    elevation: 13,                  
                     underline: Container(
                       height: 2,
-                      color: Colors.white,
+                      color: Colors.brown,
                     ),
-                    items: listJenis.map<DropdownMenuItem<String>>((String value) {
+                    items: listType.map<DropdownMenuItem<String>>((String value) {
                       return DropdownMenuItem<String>(
                         value: value,
                         child: Text(value),
                       );
                     }).toList(), onChanged: (String? value) {
-                  // This is called when the user selects an item.
                   setState(() {
-                    jenis = value!;
+                    type = value!;
                   });
                 },
                 ),
@@ -161,28 +148,13 @@ class _AddBudgetPageState extends State<AddBudgetPage> {
                   decoration: const InputDecoration(
                     hintText: 'Date',
                     border: OutlineInputBorder(
-                        borderSide: BorderSide(color: Color.fromRGBO(128,212,196,1), width: 1)),
-                    focusedBorder: OutlineInputBorder(
-                        borderSide: BorderSide(color: Color.fromRGBO(128,212,196,1), width: 1)),
-                    enabledBorder: OutlineInputBorder(
-                        borderSide: BorderSide(color: Color.fromRGBO(128,212,196,1), width: 1)),
+                        borderSide: BorderSide(color: Color.fromARGB(255, 0, 0, 0), width: 1)),
                   ),
                   controller: dateInputController,
                   readOnly: true,
                   onTap: () async {
                     DateTime? pickedDate = await showDatePicker(
-                        builder: (context, child) {
-                        return Theme(
-                          data: Theme.of(context).copyWith(
-                            colorScheme: ColorScheme.light(
-                              primary: Color.fromRGBO(128,212,196,1), // header background color
-                              onPrimary: Colors.white, // header text color
-                              onSurface: Color.fromRGBO(128,212,196,1), // body text color
-                            ),
-                          ),
-                          child: child!,
-                        );
-                      },
+                        
                         context: context,
                         initialDate: DateTime.now(),
                         firstDate: DateTime(1950),
@@ -199,16 +171,16 @@ class _AddBudgetPageState extends State<AddBudgetPage> {
                 TextButton(
                   child: const Text(
                     "Save",
-                    style: TextStyle(color: Colors.white),
+                    style: TextStyle(fontSize: 16,color: Colors.white),
                   ),
                   style: ButtonStyle(
-                    backgroundColor: MaterialStateProperty.all(Color.fromRGBO(128,212,196,1)),
+                    backgroundColor: MaterialStateProperty.all(Color.fromARGB(255, 2, 114, 93)),
                   ),
                   onPressed: () {
                     if (_formKey.currentState!.validate()) {
                       listForm.add(title);
                       listForm.add(amount);
-                      listForm.add(jenis);
+                      listForm.add(type);
                       
                       listForm.add(dateInputController.text);
                       list.add(listForm);
@@ -232,49 +204,4 @@ class _AddBudgetPageState extends State<AddBudgetPage> {
     );
     
   }
-}
-
-class BudgetDataPage extends StatelessWidget {
-  final list;
-  BudgetDataPage({super.key, @required this.list});
-
-  @override
-  Widget build(BuildContext context){
-    return Scaffold(
-      appBar: AppBar(
-        iconTheme: IconThemeData(color: Colors.black),
-        backgroundColor: Colors.white,
-        title: Text('Budget Data', style: TextStyle(
-          fontWeight: FontWeight.w600,
-          fontSize: 22, color: Colors.black54,
-        ),),
-      ),
-      // Adding drawer menu
-      drawer: DrawerClass('Budget Data'),
-
-      body: SafeArea(
-        child: ListView.builder(
-        itemCount: list.length,
-        itemBuilder: (context, index) => Card(
-          shape: RoundedRectangleBorder(
-            side: BorderSide(
-              color: Color.fromRGBO(128,212,196,1)
-            )
-          ),
-          elevation: 6,
-          margin: const EdgeInsets.all(10),
-          child:  ListTile(
-            title: Text(list[index][0]),
-            subtitle: Text(list[index][1].toString() + "\$ , " + list[index][3]),
-            trailing: Text(list[index][2]),
-          ),
-        )
-          
-        
-      ),
-      )
-    );
-  }
-
-
 }
