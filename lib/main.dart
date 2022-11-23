@@ -50,19 +50,7 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   int _counter = 0;
-  String condition = 'EVEN';
-  void _oddeven(){
-    setState((){
-    if(_counter%2 == 0){
-      condition = 'EVEN';
-      style: TextStyle(color: Colors.red);
-    }else{
-      condition = 'ODD';
-      style: TextStyle(color: Colors.blue);
-    }
-    }
-    );
-  }
+  
 
   void _incrementCounter() {
     setState(() {
@@ -139,14 +127,14 @@ class _MyHomePageState extends State<MyHomePage> {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: <Widget>[
         FloatingActionButton(
-        onPressed:(){ _incrementCounter(); _oddeven();},
+        onPressed:(){ _incrementCounter();},
         tooltip: 'Increment',
         child: const Icon(Icons.add),
       ),
        // This trailing comma makes auto-formatting nicer for build methods.
       if (_counter>0)
       FloatingActionButton(
-        onPressed:(){ _decrementCounter(); _oddeven();},
+        onPressed:(){ _decrementCounter();},
         tooltip: 'Decrement',
         child: const Icon(Icons.remove),
       )

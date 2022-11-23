@@ -4,6 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'main.dart';
 import 'package:counter_7/Form.dart';
+import 'package:counter_7/watchlist.dart';
 
 class DrawerClass extends StatelessWidget{
   DrawerClass(this.currentPage);
@@ -46,6 +47,16 @@ class DrawerClass extends StatelessWidget{
                 );
               },
             ),
+            ListTile(
+            title: const Text('My Watch List'),
+            onTap: () {
+              // Routing the menu to the form page
+              Navigator.pushReplacement(
+                context,
+                MaterialPageRoute(builder: (context) => const WatchListPage()),
+              );
+            },
+          ),
           ],
         ),
       
