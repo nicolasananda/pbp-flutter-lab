@@ -86,3 +86,25 @@ The navigator itself consists of 3 parts, namely the stack, the pop method which
 5. Create a new file in lib called showdata.dart for showing the budget data
 6. Code the files
 7. Add, Commit, Push
+
+## Assignment 9
+### Can we fetch a JSON data without making a model first? If yes, is it better than making a model first?
+Yes, you can retrieve JSON data without previously creating a model. From the JSON, we can create a dynamic map and retrieve the values in Python similarly to a dictionary (data[key]). However, it is not a good practice because it will be difficult to manage and error-prone because we won't know if a field is missing or if the fields are not what we anticipate. Having stated that, it is clear that creating a model first is preferable.
+
+### Widgets used in this assignment
+
+ListTile: Used to populate a ListView in Flutter. It contains title as well as leading or trailing icons.
+Checkbox: Used to make a clickable checkbox.
+Row: Display widgets in a Row.
+TextButton: It is a simple Button without any border that listens for onPressed and onLongPress gestures.
+FutureBuilder: Widget that builds itself based on the latest snapshot of interaction with a Future.
+
+### How fetching data from json in flutter works
+
+In the fetchwatchlist function, which calls the get function by HTTP instances, data is fetched through HTTP. The MyWatchlist object list is returned by the function. The function will be called by FutureBuilder, who will then await its outcome. After the data is fetched, the FutureBuilder returns ListView.builder, which creates ListTiles with the mapped data obtained from the fetchWatchlist function.
+
+### Implementation
+1. Create watchlist.dart
+2. Create fetchwatchlist.dart
+3. Create detailwatchlist.dart
+4. Create Checkbox for Bonus
